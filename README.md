@@ -1,16 +1,56 @@
-# latihan_penggunaan_form
+# Tugas Praktikum Flutter: Form Mahasiswa
 
-A new Flutter project.
+Repositori ini berisi starter project Flutter untuk latihan penggunaan **Form** dan validasi input.
 
-## Getting Started
+## 📋 Deskripsi Tugas
 
-This project is a starting point for a Flutter application.
+Mahasiswa diminta untuk menyelesaikan beberapa tugas pada file `formmahasiswa.dart`. Tugas ini bertujuan untuk melatih penggunaan:
 
-A few resources to get you started if this is your first Flutter project:
+- `TextFormField`
+- Validasi input
+- `DropdownButtonFormField`
+- `GlobalKey<FormState>`
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## 🧑‍🎓 Penugasan
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Silakan lengkapi TODO berikut pada file `formmahasiswa.dart`:
+
+---
+
+### ✅ TODO 1
+
+Membuat input NIM dengan validasi maksimal 12 digit angka.
+
+**Contoh valid:**
+- `123456789012` → valid
+- `123` → tudak valid (kurang dari 12)
+- `1234567890123` → tidak valid (lebih dari 12 digit)
+
+---
+
+### ✅ TODO 2
+
+Membuat input **Nama Lengkap** (tanpa validasi khusus, cukup wajib diisi saja).
+
+---
+
+### ✅ TODO 3
+
+Membuat input **Nomor Telepon** (menggunakan validasi angka/regex jika diperlukan).
+
+---
+
+### ✅ TODO 4
+
+Membuat input **Dropdown pemilihan Fakultas**.
+
+**Contoh data fakultas:**
+- Fakultas Teknik
+- Fakultas Ekonomi
+- Fakultas Ilmu komunikasi
+- Fakultas Kedokteran
+
+---
+
+
+
