@@ -4,7 +4,7 @@ Repositori ini berisi starter project Flutter untuk latihan penggunaan **Form** 
 
 ## 📋 Deskripsi Tugas
 
-Mahasiswa diminta untuk menyelesaikan beberapa tugas pada file `formmahasiswa.dart`. Tugas ini bertujuan untuk melatih penggunaan:
+Mahasiswa diminta untuk menyelesaikan beberapa tugas pada file `form_mahasiswa.dart`. Tugas ini bertujuan untuk melatih penggunaan:
 
 - `TextFormField`
 - Validasi input
