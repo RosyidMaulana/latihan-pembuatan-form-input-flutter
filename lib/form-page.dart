@@ -18,9 +18,7 @@ class _FormPageState extends State<FormPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Form Input Mahasiswa'),
-      ),
+      appBar: AppBar(title: const Text('Form Input Mahasiswa')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
@@ -36,6 +34,10 @@ class _FormPageState extends State<FormPage> {
                 ),
                 validator: (value) {
                   // TODO_20
+                  if (value == null || value.isEmpty) {
+                    return 'Nama tidak boleh kosong';
+                  }
+                  return null;
 
                   // TODO_20
                 },
@@ -47,8 +49,14 @@ class _FormPageState extends State<FormPage> {
 
               // Email
               TextFormField(
+                decoration: InputDecoration(labelText: 'Email'),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Email tidak boleh kosong';
+                  }
+                  return null;
+                },
                 // TODO_30
-
 
                 // TODO_30
                 onSaved: (value) {
@@ -57,10 +65,8 @@ class _FormPageState extends State<FormPage> {
               ),
               const SizedBox(height: 24),
 
-              
               Center(
-                child: 
-                ElevatedButton(
+                child: ElevatedButton(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       _formKey.currentState!.save();
@@ -70,16 +76,17 @@ class _FormPageState extends State<FormPage> {
 
                       showDialog(
                         context: context,
-                        builder: (context) => AlertDialog(
-                          title: const Text('Data Tersimpan'),
-                          content: Text('Nama: $_name\nEmail: $_email'),
-                          actions: [
-                            TextButton(
-                              onPressed: () => Navigator.pop(context),
-                              child: const Text('OK'),
+                        builder:
+                            (context) => AlertDialog(
+                              title: const Text('Data Tersimpan'),
+                              content: Text('Nama: $_name\nEmail: $_email'),
+                              actions: [
+                                TextButton(
+                                  onPressed: () => Navigator.pop(context),
+                                  child: const Text('OK'),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
                       );
                     }
                   },
