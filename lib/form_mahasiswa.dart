@@ -18,10 +18,7 @@ class _FormMahasiswaState extends State<FormMahasiswa> {
   String? _jenisKelamin;
   String? _fakultas;
 
-  final List<String> jenisKelaminList = [
-    'Laki-laki',
-    'Perempuan',
-  ];
+  final List<String> jenisKelaminList = ['Laki-laki', 'Perempuan'];
 
   final List<String> fakultasList = [
     'Fakultas Teknik',
@@ -50,20 +47,37 @@ class _FormMahasiswaState extends State<FormMahasiswa> {
                 maxLength: 12,
                 validator: (value) {
                   // TODO_1
-
+                  if (value == null || value.isEmpty) {
+                    return 'NIM Wajib Diisi!!';
+                  }
+                  if (value.length != 12) {
+                    return 'NIM harus 12 digit';
+                  }
+                  if (!RegExp(r'^[0-9]+$').hasMatch(value)) {
+                    return 'NIM hanya boleh angka';
+                  }
+                  return null;
                   //END_TODO_1
                 },
                 onSaved: (value) => _nim = value!,
               ),
               const SizedBox(height: 12),
 
-              // Nama Lengkap                            
+              // Nama Lengkap
               TextFormField(
                 // TODO_2
-
-
+                decoration: const InputDecoration(
+                  labelText: 'Nama Lengkap',
+                  border: OutlineInputBorder(),
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Nama Lengkap Wajib Diisi';
+                  }
+                  return null;
+                },
                 // END_TODO_2
-                onSaved: (value) => _telepon = value!,
+                onSaved: (value) => _nama = value!,
               ),
               const SizedBox(height: 12),
 
@@ -100,8 +114,20 @@ class _FormMahasiswaState extends State<FormMahasiswa> {
               // Nomor Telepon
               TextFormField(
                 // TODO_3
-
-
+                decoration: const InputDecoration(
+                  labelText: 'Nomor Telepon',
+                  border: OutlineInputBorder(),
+                ),
+                keyboardType: TextInputType.phone,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Nomor telepon wajib diisi';
+                  }
+                  if (!RegExp(r'^[0-9]+$').hasMatch(value)) {
+                    return 'Hanya boleh mengandung angka';
+                  }
+                  return null;
+                },
                 // END_TODO_3
                 onSaved: (value) => _telepon = value!,
               ),
@@ -114,15 +140,15 @@ class _FormMahasiswaState extends State<FormMahasiswa> {
                   border: OutlineInputBorder(),
                 ),
                 value: _jenisKelamin,
-                items: jenisKelaminList
-                    .map((jk) => DropdownMenuItem(
-                          value: jk,
-                          child: Text(jk),
-                        ))
-                    .toList(),
+                items:
+                    jenisKelaminList
+                        .map(
+                          (jk) => DropdownMenuItem(value: jk, child: Text(jk)),
+                        )
+                        .toList(),
                 onChanged: (value) => setState(() => _jenisKelamin = value),
-                validator: (value) =>
-                    value == null ? 'Pilih jenis kelamin' : null,
+                validator:
+                    (value) => value == null ? 'Pilih jenis kelamin' : null,
                 onSaved: (value) => _jenisKelamin = value,
               ),
               const SizedBox(height: 12),
@@ -130,37 +156,53 @@ class _FormMahasiswaState extends State<FormMahasiswa> {
               // Fakultas
               DropdownButtonFormField<String>(
                 // TODO_4
-                
+                decoration: const InputDecoration(
+                  labelText: 'Fakultas',
+                  border: OutlineInputBorder(),
+                ),
+                value: _fakultas,
+                items:
+                    fakultasList
+                        .map(
+                          (fakultas) => DropdownMenuItem(
+                            value: fakultas,
+                            child: Text(fakultas),
+                          ),
+                        )
+                        .toList(),
+                onChanged: (value) => setState(() => _fakultas = value),
+                validator: (value) => value == null ? 'Pilih Fakultas' : null,
+
                 // END_TODO_4
                 onSaved: (value) => _fakultas = value,
               ),
               const SizedBox(height: 20),
 
-              
               ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     _formKey.currentState!.save();
                     showDialog(
                       context: context,
-                      builder: (_) => AlertDialog(
-                        title: const Text('Data Mahasiswa'),
-                        content: Text(
-                          'NIM: $_nim\n'
-                          'Nama: $_nama\n'
-                          'Panggilan: $_panggilan\n'
-                          'Email: $_email\n'
-                          'Telepon: $_telepon\n'
-                          'Jenis Kelamin: $_jenisKelamin\n'
-                          'Fakultas: $_fakultas',
-                        ),
-                        actions: [
-                          TextButton(
-                            onPressed: () => Navigator.pop(context),
-                            child: const Text('OK'),
+                      builder:
+                          (_) => AlertDialog(
+                            title: const Text('Data Mahasiswa'),
+                            content: Text(
+                              'NIM: $_nim\n'
+                              'Nama: $_nama\n'
+                              'Panggilan: $_panggilan\n'
+                              'Email: $_email\n'
+                              'Telepon: $_telepon\n'
+                              'Jenis Kelamin: $_jenisKelamin\n'
+                              'Fakultas: $_fakultas',
+                            ),
+                            actions: [
+                              TextButton(
+                                onPressed: () => Navigator.pop(context),
+                                child: const Text('OK'),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
                     );
                   }
                 },
