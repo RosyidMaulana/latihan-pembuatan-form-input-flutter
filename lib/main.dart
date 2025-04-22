@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'form-page.dart';
+// import 'form-page.dart';
 import 'form_mahasiswa.dart';
 
 void main() {
@@ -12,8 +12,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: const HomePage(),
-    );
+      title: 'Aplikasi Mahasiswa',
+      theme: ThemeData(
+        primarySwatch: Colors.blue
+      ),
+      home: const HomePage());
   }
 }
 
@@ -37,9 +40,11 @@ class HomePage extends StatelessWidget {
                 Navigator.push(
                   context,
                   // Menampilkan form yang berbeda anta form page latihan dan formmahasiswa
-                  
+
                   // MaterialPageRoute(builder: (context) => const FormPage()),
-                  MaterialPageRoute(builder: (context) => const FormMahasiswa()),
+                  MaterialPageRoute(
+                    builder: (context) => const FormMahasiswa(),
+                  ),
                 );
               },
               child: const Icon(Icons.add),
