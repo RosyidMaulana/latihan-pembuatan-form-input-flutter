@@ -11,9 +11,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: const HomePage(),
-    );
+    return MaterialApp(home: const HomePage());
   }
 }
 
@@ -36,10 +34,12 @@ class HomePage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
+
                   // Menampilkan form yang berbeda anta form page latihan dan formmahasiswa
-                  
                   // MaterialPageRoute(builder: (context) => const FormPage()),
-                  MaterialPageRoute(builder: (context) => const FormMahasiswa()),
+                  MaterialPageRoute(
+                    builder: (context) => const FormMahasiswa(),
+                  ),
                 );
               },
               child: const Icon(Icons.add),
