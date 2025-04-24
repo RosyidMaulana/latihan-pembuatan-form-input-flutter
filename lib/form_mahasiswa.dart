@@ -50,7 +50,16 @@ class _FormMahasiswaState extends State<FormMahasiswa> {
                 maxLength: 12,
                 validator: (value) {
                   // TODO_1
-
+                  if (value == null) {
+                    return 'NIM tidak boleh kosong';
+                  }
+                  if (!RegExp(r'^\d+$').hasMatch(value)) {
+                    return 'NIM harus berupa angka';
+                  } 
+                  if (!RegExp(r'^\d{12}$').hasMatch(value)) {
+                    return 'NIM harus 12 digit';
+                  }
+                  return null;
                   //END_TODO_1
                 },
                 onSaved: (value) => _nim = value!,
@@ -60,10 +69,18 @@ class _FormMahasiswaState extends State<FormMahasiswa> {
               // Nama Lengkap                            
               TextFormField(
                 // TODO_2
-
-
+                decoration: const InputDecoration(
+                  labelText: 'Nama Lengkap',
+                  border: OutlineInputBorder(),
+                ),
+                validator: (value) {
+                  if (value == null  || value.isEmpty) {
+                    return 'Nama tidak boleh kosong';
+                  }
+                  return null;
+                },
                 // END_TODO_2
-                onSaved: (value) => _telepon = value!,
+                onSaved: (value) => _nama = value!,
               ),
               const SizedBox(height: 12),
 
@@ -100,8 +117,21 @@ class _FormMahasiswaState extends State<FormMahasiswa> {
               // Nomor Telepon
               TextFormField(
                 // TODO_3
-
-
+                decoration: const InputDecoration(
+                  labelText: 'Nomor Telepon',
+                  border: OutlineInputBorder(),
+                ),
+                keyboardType: TextInputType.number,
+                maxLength: 12,
+                validator: (value) {
+                  if (value == null) {
+                    return 'Nomor Telepon tidak boleh kosong';
+                  }
+                  if (!RegExp(r'^\d+$').hasMatch(value)) {
+                    return 'Nomor Telepon harus 12 digit';
+                  }
+                  return null;
+                },
                 // END_TODO_3
                 onSaved: (value) => _telepon = value!,
               ),
@@ -130,7 +160,20 @@ class _FormMahasiswaState extends State<FormMahasiswa> {
               // Fakultas
               DropdownButtonFormField<String>(
                 // TODO_4
-                
+                decoration: const InputDecoration(
+                  labelText: 'Fakultas',
+                  border: OutlineInputBorder(),
+                ),
+                value: _fakultas,
+                items: fakultasList
+                    .map((fk) => DropdownMenuItem(
+                          value: fk,
+                          child: Text(fk),
+                        ))
+                    .toList(),
+                onChanged: (value) => setState(() => _fakultas = value),
+                validator: (value) =>
+                    value == null ? 'Pilih Fakultas' : null,
                 // END_TODO_4
                 onSaved: (value) => _fakultas = value,
               ),
