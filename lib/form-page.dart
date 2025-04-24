@@ -36,7 +36,10 @@ class _FormPageState extends State<FormPage> {
                 ),
                 validator: (value) {
                   // TODO_20
-
+                  if (value == null  || value.isEmpty) {
+                    return 'Nama tidak boleh kosong';
+                  }
+                  return null;
                   // TODO_20
                 },
                 onSaved: (value) {
@@ -48,7 +51,13 @@ class _FormPageState extends State<FormPage> {
               // Email
               TextFormField(
                 // TODO_30
-
+                decoration: InputDecoration(labelText: 'Email'),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Email tidak boleh kosong';
+                  }
+                  return null;
+                }, 
 
                 // TODO_30
                 onSaved: (value) {
